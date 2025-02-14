@@ -7,7 +7,7 @@ const HomeContainer = styled.div`
   justify-content: center; /* 가로 가운데 정렬 */
   align-items: center;
   height: calc(90vh - 50px);
-  background-color: blue;
+  background-color: lightpink;
 `;
 
 const Home = () => {
