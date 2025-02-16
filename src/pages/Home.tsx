@@ -11,6 +11,6 @@ const HomeContainer = styled.div`
 `;
 
 const Home = () => {
-  return <HomeContainer>Home</HomeContainer>;
+  return <HomeContainer>MBTI 애니 추천 목록</HomeContainer>;
 };
 export default Home;
