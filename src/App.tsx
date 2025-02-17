@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router';
-import { GlobalStyle } from './components/GlobalStyle';
+import { GlobalStyle } from './styles/GlobalStyle';
 import Home from './pages/Home';
 import Layout from './layout/Layout';
 import RouterError from './components/common/RouterError';
