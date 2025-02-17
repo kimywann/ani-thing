@@ -2,9 +2,14 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const HeaderContainer = styled.header`
-  height: 50px;
-  background-color: wheat;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1rem;
+  height: 20px;
+  background-color: #ffffff;
 `;
 
 const Logo = styled.div`
@@ -15,7 +20,6 @@ const Logo = styled.div`
   font-size: 24px;
   font-weight: bold;
   color: black;
-  margin-bottom: 30px; /* 로고와 항목들 사이에 간격을 주기 위해 margin 추가 */
   cursor: pointer;
 
   a {

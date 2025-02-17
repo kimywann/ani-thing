@@ -11,7 +11,6 @@ const SideBarContainer = styled.aside`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-color: aliceblue;
 `;
 
 const SideBarItem = styled.div`
