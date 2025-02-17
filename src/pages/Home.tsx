@@ -1,16 +1,23 @@
 import styled from 'styled-components';
+import AnimeList from '../components/AnimeList';
 
 const HomeContainer = styled.div`
-  margin-left: 200px; /* 사이드바 너비만큼 여백 */
-  margin-top: 40px; /* 헤더 높이만큼 여백 */
-  display: flex;
-  justify-content: center; /* 가로 가운데 정렬 */
-  align-items: center;
-  height: calc(90vh - 50px);
-  background-color: lightpink;
+  min-height: 100vh;
+  padding-top: 10px; // 상단 여백을 줄임
+`;
+
+const ContentWrapper = styled.div`
+  margin-left: 240px; // 사이드바 너비만큼 여백
+  padding: 0 20px;
 `;
 
 const Home = () => {
-  return <HomeContainer>MBTI 애니 추천 목록</HomeContainer>;
+  return (
+    <HomeContainer>
+      <ContentWrapper>
+        <AnimeList />
+      </ContentWrapper>
+    </HomeContainer>
+  );
 };
 export default Home;
