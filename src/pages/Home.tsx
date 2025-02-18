@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import AnimeList from '../components/AnimeList';
+import AnimeList from '@/components/home/AnimeList';
 
 const HomeContainer = styled.div`
   min-height: 100vh;

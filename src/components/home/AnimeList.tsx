@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
 import { useEffect, useState, useRef } from 'react';
-import { fetchTopAnime } from '../api/animeFetcher';
-import { Anime } from '../types/anime.model';
+import { fetchTopAnime } from '@/api/animeFetcher';
+import { Anime } from '@/types/anime.model';
 
-import { MBTI } from '../constants/mbti/types';
-import { mbtiGenres } from '../constants/mbti.genres';
-import { isValidMBTI } from '../utils/mbti.validator';
+import { MBTI } from '@/types/mbti.model';
+import { mbtiGenres } from '@/constants/mbti.genres';
+import { isValidMBTI } from '@/utils/mbti.validator';
 
-import MbtiForm from './MbtiForm';
-import Modal from './common/Modal';
+import MbtiForm from '@/components/home/MbtiForm';
+import Modal from '@/components/common/Modal';
 
 const Section = styled.div`
   margin-bottom: 40px;
@@ -120,9 +120,11 @@ export default function AnimeList() {
   const [userMbti, setUserMbti] = useState<MBTI | null>(null);
 
   useEffect(() => {
+    let isMounted = true; // 컴포넌트 마운트 상태 추적
+
     async function getAnime() {
       if (!userMbti) {
-        setLoading(false); // MBTI가 없을 때는 로딩 상태 해제
+        setLoading(false);
         return;
       }
 
@@ -135,16 +137,28 @@ export default function AnimeList() {
           fetchTopAnime(genre, 'UPCOMING'),
         ]);
 
-        setTrendingAnime(trending);
-        setPopularAnime(popular);
-        setUpcomingAnime(upcoming);
+        if (isMounted) {
+          // 컴포넌트가 마운트된 상태일 때만 상태 업데이트
+          setTrendingAnime(trending);
+          setPopularAnime(popular);
+          setUpcomingAnime(upcoming);
+        }
       } catch (err) {
-        setError(err instanceof Error ? err.message : '데이터를 불러오는데 실패했습니다.');
+        if (isMounted) {
+          setError(err instanceof Error ? err.message : '데이터를 불러오는데 실패했습니다.');
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     }
+
     getAnime();
+
+    return () => {
+      isMounted = false; // 클린업 함수
+    };
   }, [userMbti]);
 
   const handleAnimeClick = (anime: Anime) => {
