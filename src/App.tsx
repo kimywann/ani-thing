@@ -1,9 +1,13 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { GlobalStyle } from './styles/GlobalStyle';
+
 import Home from './pages/Home';
 import Layout from './layout/Layout';
+
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RouterError from './components/common/RouterError';
+
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Analytics } from '@vercel/analytics/react';
 
 const routeList = [
   {
@@ -34,8 +38,9 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <RouterProvider router={router} />
+      <Analytics />
       <SpeedInsights />
+      <RouterProvider router={router} />
     </>
   );
 }
