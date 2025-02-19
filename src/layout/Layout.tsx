@@ -1,16 +1,14 @@
 import Header from '../components/common/Header';
-import SideBar from '../components/common/SideBar';
 import styled from 'styled-components';
 
 const LayoutContainer = styled.div`
-  display: flex;
   min-height: 100vh;
 `;
 
 const MainContent = styled.main`
-  flex: 1;
-  margin-left: 240px; // 사이드바 너비만큼
-  margin-top: 20px; // 헤더 높이만큼
+  width: 100%;
+  margin-top: 80px; // 헤더와의 간격 증가
+  box-sizing: border-box;
 `;
 
 interface LayoutProps {
@@ -21,7 +19,6 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <LayoutContainer>
       <Header />
-      <SideBar />
       <MainContent>{children}</MainContent>
     </LayoutContainer>
   );
