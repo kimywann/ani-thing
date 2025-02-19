@@ -5,18 +5,44 @@ const FormContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+`;
+
+const Title = styled.h1`
+  margin: 0;
+  font-size: 24px;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
 `;
 
 const InputGroup = styled.div`
   display: flex;
   gap: 10px;
-  padding: 0 100px;
+
+  @media (max-width: 768px) {
+    width: auto;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const Input = styled.input`
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;
+
+  @media (max-width: 768px) {
+    width: 200px;
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
 `;
 
 const Button = styled.button`
@@ -29,6 +55,11 @@ const Button = styled.button`
 
   &:hover {
     background-color: #357abd;
+  }
+
+  @media (max-width: 768px) {
+    width: 200px;
+    margin: 0 auto;
   }
 `;
 
@@ -45,7 +76,7 @@ const MbtiForm = ({ onSubmit }: { onSubmit: (mbti: string) => void }) => {
 
   return (
     <FormContainer>
-      <h1 style={{ margin: 0 }}>MBTI 기반 애니 추천</h1>
+      <Title>MBTI 기반 애니 추천</Title>
       <InputGroup>
         <Input
           type="text"
