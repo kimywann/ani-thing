@@ -3,6 +3,7 @@ import { GlobalStyle } from './styles/GlobalStyle';
 import Home from './pages/Home';
 import Layout from './layout/Layout';
 import RouterError from './components/common/RouterError';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 const routeList = [
   {
@@ -34,6 +35,7 @@ function App() {
     <>
       <GlobalStyle />
       <RouterProvider router={router} />
+      <SpeedInsights />
     </>
   );
 }
