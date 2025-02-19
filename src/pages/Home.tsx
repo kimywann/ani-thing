@@ -2,13 +2,12 @@ import styled from 'styled-components';
 import AnimeList from '@/components/home/AnimeList';
 
 const HomeContainer = styled.div`
-  min-height: 100vh;
-  padding-top: 10px; // 상단 여백을 줄임
+  padding: 20px;
 `;
 
 const ContentWrapper = styled.div`
-  margin-left: 240px; // 사이드바 너비만큼 여백
-  padding: 0 20px;
+  max-width: 950px;
+  margin: 0 auto;
 `;
 
 const Home = () => {
