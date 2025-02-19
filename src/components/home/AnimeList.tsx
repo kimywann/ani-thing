@@ -11,9 +11,27 @@ import { isValidMBTI } from '@/utils/mbti.validator';
 import MbtiForm from '@/components/home/MbtiForm';
 import Modal from '@/components/common/Modal';
 
+const Container = styled.div`
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem; // 헤더와 동일한 패딩
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
+`;
+
+const FormSection = styled.div`
+  margin-bottom: 40px;
+`;
+
 const Section = styled.div`
   margin-bottom: 40px;
   position: relative;
+
+  @media (max-width: 768px) {
+    margin-bottom: 30px;
+  }
 `;
 
 const SectionTitle = styled.h2`
@@ -21,7 +39,12 @@ const SectionTitle = styled.h2`
   margin-bottom: 20px;
   color: #333;
   font-weight: bold;
-  padding: 0 20px;
+  padding: 0; // 패딩 제거
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
 `;
 
 const ScrollButton = styled.button<{ direction: 'left' | 'right' }>`
@@ -38,30 +61,38 @@ const ScrollButton = styled.button<{ direction: 'left' | 'right' }>`
   z-index: 1;
   transition: background-color 0.3s;
 
+  @media (max-width: 768px) {
+    display: none; // 모바일에서는 스크롤 버튼 숨김
+  }
+
   &:hover {
     background-color: rgba(0, 0, 0, 0.7);
   }
 `;
 
 const AniListWrapper = styled.div`
-  overflow-x: hidden;
+  overflow-x: auto; // 변경: hidden에서 auto로
   padding: 20px 0;
   max-width: 100%;
+  -webkit-overflow-scrolling: touch; // 추가: 모바일에서 부드러운 스크롤
 
   /* 스크롤바 스타일 제거 */
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 
   &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none;
   }
 `;
 
 const AniList = styled.div`
   display: flex;
   gap: 20px;
-  padding: 0 20px;
   width: max-content;
+
+  @media (max-width: 768px) {
+    gap: 15px;
+  }
 `;
 
 const AniListItem = styled.div`
@@ -70,11 +101,20 @@ const AniListItem = styled.div`
   flex-shrink: 0;
   cursor: pointer;
 
+  @media (max-width: 768px) {
+    width: 140px; // 모바일에서는 더 작은 크기로
+  }
+
   img {
     width: 150px;
     height: 200px;
     object-fit: cover;
     transition: transform 0.3s ease;
+
+    @media (max-width: 768px) {
+      width: 120px;
+      height: 160px;
+    }
   }
 
   img:hover {
@@ -89,11 +129,20 @@ const AniListItem = styled.div`
     text-overflow: ellipsis;
     max-width: 150px;
     margin: 10px auto;
+
+    @media (max-width: 768px) {
+      font-size: 12px;
+      max-width: 120px;
+    }
   }
 `;
 
 const RecommendationSection = styled.div`
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 15px;
+  }
 `;
 
 const MbtiTag = styled.span`
@@ -102,12 +151,11 @@ const MbtiTag = styled.span`
   padding: 4px 8px;
   border-radius: 4px;
   margin-right: 8px;
-`;
 
-const Container = styled.div`
-  max-width: 100%;
-  overflow-x: hidden;
-  margin-top: 60px;
+  @media (max-width: 768px) {
+    padding: 3px 6px;
+    font-size: 14px;
+  }
 `;
 
 export default function AnimeList() {
@@ -220,7 +268,7 @@ export default function AnimeList() {
 
   return (
     <Container>
-      <RecommendationSection>
+      <FormSection>
         <MbtiForm onSubmit={handleMbtiSubmit} />
         {userMbti && (
           <div style={{ marginTop: '10px' }}>
@@ -228,7 +276,7 @@ export default function AnimeList() {
             {mbtiGenres[userMbti].map((genre) => genre.name).join(', ')}
           </div>
         )}
-      </RecommendationSection>
+      </FormSection>
 
       {userMbti ? (
         <>
@@ -258,7 +306,9 @@ export default function AnimeList() {
           </Modal>
         </>
       ) : (
-        <div style={{ marginTop: '50px', color: '#666' }}>MBTI를 입력하시면 맞춤 애니메이션을 추천해드립니다!</div>
+        <div style={{ textAlign: 'center', color: '#666', marginTop: '50px' }}>
+          MBTI를 입력하시면 맞춤 애니메이션을 추천해드립니다!
+        </div>
       )}
     </Container>
   );
