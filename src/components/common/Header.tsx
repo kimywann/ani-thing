@@ -37,31 +37,6 @@ const Logo = styled.div`
   }
 `;
 
-const Nav = styled.nav`
-  display: flex;
-  gap: 24px;
-  align-items: center;
-
-  @media (max-width: 768px) {
-    gap: 16px;
-  }
-`;
-
-const NavItem = styled(Link)`
-  color: #666;
-  text-decoration: none;
-  font-size: 16px;
-  transition: color 0.2s;
-
-  &:hover {
-    color: #4a90e2;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 14px;
-  }
-`;
-
 const Header = () => {
   return (
     <HeaderContainer>
@@ -69,10 +44,6 @@ const Header = () => {
         <Logo>
           <Link to="/">ANITHING</Link>
         </Logo>
-        <Nav>
-          <NavItem to="/discussion">애니 토론 & 투표</NavItem>
-          <NavItem to="/community">커뮤니티</NavItem>
-        </Nav>
       </HeaderContent>
     </HeaderContainer>
   );
